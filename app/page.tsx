@@ -33,8 +33,11 @@ export default function LandingPage() {
   }, [])
 
   const handleGetStarted = () => {
-    // Always go to leaderboard (public access)
-    router.push("/leaderboard")
+    if (currentUser) {
+      router.push("/leaderboard")
+    } else {
+      setShowAuthModal(true)
+    }
   }
 
   if (!mounted) return null

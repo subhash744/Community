@@ -71,7 +71,7 @@ export default function ProfileCreationPage() {
       // Redirect after confetti animation
       setTimeout(() => {
         router.push("/leaderboard")
-      }, 3000)
+      }, 1000)
     }
   }
 

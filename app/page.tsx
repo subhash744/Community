@@ -7,12 +7,14 @@ import Navigation from "@/components/navigation"
 import { getCurrentUser, getAllUsers } from "@/lib/storage"
 import { initializeMockData } from "@/lib/init-mock-data"
 import { updateStreaks } from "@/lib/storage"
+import FullscreenConfetti from "@/components/fullscreen-confetti"
 
 export default function LandingPage() {
   const router = useRouter()
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [currentUser, setCurrentUser] = useState<any>(null)
   const [mounted, setMounted] = useState(false)
+  const [showWelcomeConfetti, setShowWelcomeConfetti] = useState(false)
 
   useEffect(() => {
     setMounted(true)
@@ -21,6 +23,8 @@ export default function LandingPage() {
     const existingUsers = getAllUsers()
     if (existingUsers.length === 0) {
       initializeMockData()
+      // Show welcome confetti for first-time visitors
+      setShowWelcomeConfetti(true)
     }
     const user = getCurrentUser()
     if (user) {
@@ -37,6 +41,10 @@ export default function LandingPage() {
 
   return (
     <div className="w-full min-h-screen bg-[#F7F5F3] flex flex-col">
+      <FullscreenConfetti 
+        trigger={showWelcomeConfetti} 
+        onComplete={() => setShowWelcomeConfetti(false)} 
+      />
       <Navigation />
 
       {/* Hero Section */}

@@ -67,12 +67,24 @@ export default function Navigation() {
             </button>
           </>
         ) : (
-          <button
-            onClick={() => router.push("/profile-creation")}
-            className="px-4 py-2 bg-white border border-[#E0DEDB] text-[#37322F] rounded-full text-sm font-medium hover:bg-[#F7F5F3] transition"
-          >
-            Join Now
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={() => router.push("/profile-creation")}
+              className="px-4 py-2 bg-white border border-[#E0DEDB] text-[#37322F] rounded-full text-sm font-medium hover:bg-[#F7F5F3] transition"
+            >
+              Join Now
+            </button>
+            <button
+              onClick={() => {
+                // Show login modal or redirect to login page
+                const event = new CustomEvent('showLoginModal')
+                window.dispatchEvent(event)
+              }}
+              className="px-4 py-2 bg-[#37322F] text-white rounded-full text-sm font-medium hover:bg-[#2a2520] transition"
+            >
+              Login
+            </button>
+          </div>
         )}
       </div>
     </nav>

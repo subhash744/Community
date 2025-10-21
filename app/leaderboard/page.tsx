@@ -69,7 +69,7 @@ export default function LeaderboardPage() {
       )}
 
       {/* Tabs */}
-      <div className="border-b border-[rgba(55,50,47,0.12)] px-6 flex gap-8">
+      <div className="border-b border-[rgba(55,50,47,0.12)] px-6 flex justify-center gap-8">
         {(["today", "yesterday", "all-time", "newcomers"] as const).map((tab) => (
           <button
             key={tab}

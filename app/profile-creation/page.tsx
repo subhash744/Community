@@ -4,6 +4,8 @@
 import { useState, useEffect } from "react"
 import { useRouter } from 'next/navigation'
 import { getCurrentUser, saveUserProfile } from "@/lib/storage"
+import confetti from "canvas-confetti"
+import FullscreenConfetti from "@/components/fullscreen-confetti"
 
 export default function ProfileCreationPage() {
   const router = useRouter()
@@ -17,6 +19,7 @@ export default function ProfileCreationPage() {
   const [avatar, setAvatar] = useState("")
   const [social, setSocial] = useState({ x: "", github: "", website: "", linkedin: "" })
   const [goal, setGoal] = useState({ title: "", description: "", progressPercent: 0 })
+  const [showCompletionConfetti, setShowCompletionConfetti] = useState(false)
 
   useEffect(() => {
     const currentUser = getCurrentUser()
@@ -61,7 +64,14 @@ export default function ProfileCreationPage() {
         goal: goal.title ? goal : undefined,
       }
       saveUserProfile(updatedUser)
-      router.push("/leaderboard")
+      
+      // Show completion confetti
+      setShowCompletionConfetti(true)
+      
+      // Redirect after confetti animation
+      setTimeout(() => {
+        router.push("/leaderboard")
+      }, 3000)
     }
   }
 
@@ -104,6 +114,10 @@ export default function ProfileCreationPage() {
 
   return (
     <div className="w-full min-h-screen bg-[#F7F5F3] flex flex-col">
+      <FullscreenConfetti 
+        trigger={showCompletionConfetti} 
+        onComplete={() => setShowCompletionConfetti(false)} 
+      />
       {/* Header */}
       <div className="border-b border-rgba(55,50,47,0.12) px-6 py-4">
         <h1 className="text-2xl font-semibold text-[#37322F]">Create Your Profile</h1>

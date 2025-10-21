@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import AuthModal from "@/components/auth-modal"
 import Navigation from "@/components/navigation"
-import { getCurrentUser } from "@/lib/storage"
+import { getCurrentUser, getAllUsers } from "@/lib/storage"
 import { initializeMockData } from "@/lib/init-mock-data"
 import { updateStreaks } from "@/lib/storage"
 
@@ -17,7 +17,11 @@ export default function LandingPage() {
   useEffect(() => {
     setMounted(true)
     updateStreaks()
-    initializeMockData()
+    // Only initialize mock data if no users exist (first time visit)
+    const existingUsers = getAllUsers()
+    if (existingUsers.length === 0) {
+      initializeMockData()
+    }
     const user = getCurrentUser()
     if (user) {
       setCurrentUser(user)
@@ -25,11 +29,8 @@ export default function LandingPage() {
   }, [])
 
   const handleGetStarted = () => {
-    if (currentUser) {
-      router.push("/leaderboard")
-    } else {
-      setShowAuthModal(true)
-    }
+    // Always go to leaderboard (public access)
+    router.push("/leaderboard")
   }
 
   if (!mounted) return null

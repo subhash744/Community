@@ -68,10 +68,10 @@ export default function Navigation() {
           </>
         ) : (
           <button
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/profile-creation")}
             className="px-4 py-2 bg-white border border-[#E0DEDB] text-[#37322F] rounded-full text-sm font-medium hover:bg-[#F7F5F3] transition"
           >
-            Log in
+            Join Now
           </button>
         )}
       </div>

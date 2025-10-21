@@ -23,15 +23,10 @@ export default function LeaderboardPage() {
     const user = getCurrentUser()
     setCurrentUser(user)
     
-    // Only load leaderboard data if user is logged in
-    if (user) {
-      updateLeaderboard("all-time")
-      setFeatured(getFeaturedBuilders())
-    } else {
-      // Redirect to home page if not logged in
-      router.push('/')
-    }
-  }, [router])
+    // Load leaderboard data for all users (public access)
+    updateLeaderboard("all-time")
+    setFeatured(getFeaturedBuilders())
+  }, [])
 
   const updateLeaderboard = (sort: SortBy) => {
     setSortBy(sort)

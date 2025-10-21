@@ -94,7 +94,7 @@ const goalTitles = [
 const links = [
   { title: "GitHub", url: "https://github.com" },
   { title: "Twitter", url: "https://twitter.com" },
-  { title: "Portfolio", url: "https://example.com" },
+  { title: "Portfolio", url: "https://portfolio.example.com" },
   { title: "LinkedIn", url: "https://linkedin.com" },
 ]
 
@@ -116,8 +116,8 @@ export function initializeMockData() {
       id: `project_${userId}_${i}`,
       title: projectTitles[(index * 3 + i) % projectTitles.length],
       description: projectDescriptions[(index * 3 + i) % projectDescriptions.length],
-      bannerUrl: `/placeholder.svg?height=160&width=400&query=project${i}`,
-      link: `https://example.com/project-${index}-${i}`,
+      bannerUrl: `/placeholder.jpg`,
+      link: `https://github.com/${name.username}/project-${i}`,
       upvotes: Math.floor(Math.random() * 50),
       views: Math.floor(Math.random() * 200) + 10,
       createdAt: createdAt + i * 7 * 24 * 60 * 60 * 1000,

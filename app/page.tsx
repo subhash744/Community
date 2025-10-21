@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import AuthModal from "@/components/auth-modal"
+import LoginModal from "@/components/login-modal"
 import Navigation from "@/components/navigation"
 import { getCurrentUser, getAllUsers } from "@/lib/storage"
 import { initializeMockData } from "@/lib/init-mock-data"
@@ -11,7 +11,7 @@ import FullscreenConfetti from "@/components/fullscreen-confetti"
 
 export default function LandingPage() {
   const router = useRouter()
-  const [showAuthModal, setShowAuthModal] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
   const [currentUser, setCurrentUser] = useState<any>(null)
   const [mounted, setMounted] = useState(false)
   const [showWelcomeConfetti, setShowWelcomeConfetti] = useState(false)
@@ -36,7 +36,7 @@ export default function LandingPage() {
     if (currentUser) {
       router.push("/leaderboard")
     } else {
-      setShowAuthModal(true)
+      setShowLoginModal(true)
     }
   }
 
@@ -94,7 +94,7 @@ export default function LandingPage() {
       </div>
 
       {/* Auth Modal */}
-      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
+      {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
     </div>
   )
 }

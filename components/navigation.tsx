@@ -16,11 +16,6 @@ export default function Navigation() {
     setCurrentUser(user)
   }, [])
 
-  const handleLogout = () => {
-    localStorage.removeItem("currentUser")
-    setCurrentUser(null)
-    router.push("/")
-  }
 
   if (!mounted) return null
 
@@ -58,12 +53,6 @@ export default function Navigation() {
               className="w-8 h-8 rounded-full bg-[#E0DEDB] flex items-center justify-center text-xs font-semibold text-[#37322F]"
             >
               {currentUser.displayName.charAt(0)}
-            </button>
-            <button
-              onClick={handleLogout}
-              className="px-4 py-2 border border-[#E0DEDB] text-[#37322F] rounded-full text-sm font-medium hover:bg-white transition"
-            >
-              Logout
             </button>
           </>
         ) : (

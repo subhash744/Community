@@ -12,56 +12,41 @@ export default function FullscreenConfetti({ trigger, onComplete }: FullscreenCo
   useEffect(() => {
     if (!trigger) return
 
-    // Create multiple confetti bursts for fullscreen effect
-    const duration = 500 // 0.5 seconds
-    const animationEnd = Date.now() + duration
+    // Simple confetti bursts - center, top, bottom only
+    const particleCount = 50
+    
+    // Center blast
+    confetti({
+      particleCount,
+      startVelocity: 30,
+      spread: 70,
+      origin: { x: 0.5, y: 0.5 },
+      colors: ['#37322F', '#605A57', '#E0DEDB']
+    })
 
-    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min
+    // Top blast
+    confetti({
+      particleCount: 30,
+      startVelocity: 25,
+      spread: 60,
+      origin: { x: 0.5, y: 0.1 },
+      colors: ['#37322F', '#605A57', '#E0DEDB']
+    })
 
-    const interval = setInterval(() => {
-      const timeLeft = animationEnd - Date.now()
+    // Bottom blast
+    confetti({
+      particleCount: 30,
+      startVelocity: 25,
+      spread: 60,
+      origin: { x: 0.5, y: 0.9 },
+      colors: ['#37322F', '#605A57', '#E0DEDB']
+    })
 
-      if (timeLeft <= 0) {
-        clearInterval(interval)
-        onComplete?.()
-        return
-      }
+    // Complete after short delay
+    setTimeout(() => {
+      onComplete?.()
+    }, 1000)
 
-      // Create confetti from multiple positions across the entire screen
-      const particleCount = 100
-      
-      // Full screen coverage - multiple bursts across entire width
-      for (let i = 0; i < 8; i++) {
-        const x = (i + 1) / 9 // Distribute across screen width
-        const y = Math.random() * 0.3 - 0.1 // Random height near top
-        
-        confetti({
-          particleCount,
-          startVelocity: 50,
-          spread: 90,
-          origin: { x, y },
-          colors: ['#37322F', '#605A57', '#E0DEDB', '#D0CECC', '#F7F5F3']
-        })
-      }
-
-      // Additional bursts from edges
-      confetti({
-        particleCount: 80,
-        startVelocity: 40,
-        spread: 120,
-        origin: { x: 0, y: 0.1 }
-      })
-
-      confetti({
-        particleCount: 80,
-        startVelocity: 40,
-        spread: 120,
-        origin: { x: 1, y: 0.1 }
-      })
-
-    }, 50) // Faster bursts for more intense effect
-
-    return () => clearInterval(interval)
   }, [trigger, onComplete])
 
   return null

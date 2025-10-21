@@ -158,7 +158,7 @@ export default function ProfileCreationPage() {
               </div>
               <div className="flex justify-center mb-6">
                 <img
-                  src={avatar || "/placeholder.svg"}
+                  src={avatar || "/placeholder.jpg"}
                   alt="Avatar"
                   className="w-24 h-24 rounded-full border-4 border-[#E0DEDB]"
                 />

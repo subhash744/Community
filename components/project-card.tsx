@@ -52,7 +52,7 @@ export default function ProjectCard({ project, userId, onUpvote }: ProjectCardPr
     >
       {project.bannerUrl ? (
         <img
-          src={project.bannerUrl || "/placeholder.svg"}
+          src={project.bannerUrl || "/placeholder.jpg"}
           alt={project.title}
           className="w-full h-40 object-cover group-hover:scale-105 transition-transform"
         />

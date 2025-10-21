@@ -66,7 +66,7 @@ export default function ProjectForm({ userId, project, onSave, onCancel }: Proje
           value={bannerUrl}
           onChange={(e) => setBannerUrl(e.target.value)}
           className="w-full px-4 py-2 border border-[#E0DEDB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37322F]"
-          placeholder="https://example.com/banner.jpg"
+          placeholder="https://your-project.com/banner.jpg"
         />
       </div>
 
@@ -78,7 +78,7 @@ export default function ProjectForm({ userId, project, onSave, onCancel }: Proje
           onChange={(e) => setLink(e.target.value)}
           required
           className="w-full px-4 py-2 border border-[#E0DEDB] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#37322F]"
-          placeholder="https://example.com"
+          placeholder="https://your-project.com"
         />
       </div>
 
